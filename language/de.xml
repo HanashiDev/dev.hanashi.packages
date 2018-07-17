@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/tornado/language.xsd" languagecode="de">
+	<category name="packages.acp.menu">
+		<item name="packages.acp.menu.link.package"><![CDATA[Paket-Server]]></item>
+		<item name="packages.acp.menu.link.package.repository.list"><![CDATA[Repositorys]]></item>
+		<item name="packages.acp.menu.link.package.repository.add"><![CDATA[Hinzufügen]]></item>
+	</category>
+</language>
