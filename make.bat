@@ -6,4 +6,4 @@ del files.tar
 del templates.tar
 7z a -ttar -mx=9 templates.tar .\templates\*
 del eu.hanashi.packages.tar
-7z a -ttar -mx=9 eu.hanashi.packages.tar .\* -x!acptemplates -x!files -x!templates -x!eu.hanashi.packages.tar -x!.git -x!.gitignore -x!make.test.bat -x!make.live.bat -x!option.test.xml -x!option.live.xml
+7z a -ttar -mx=9 eu.hanashi.packages.tar .\* -x!acptemplates -x!files -x!templates -x!eu.hanashi.packages.tar -x!.git -x!.gitignore -x!make.bat -x!make.sh
