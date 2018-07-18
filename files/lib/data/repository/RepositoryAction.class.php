@@ -5,7 +5,7 @@ use wcf\data\ISearchAction;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\WCF;
 
-class GameAction extends AbstractDatabaseObjectAction {
+class RepositoryAction extends AbstractDatabaseObjectAction {
 	public function validateDelete() {
 		parent::validateDelete();
         

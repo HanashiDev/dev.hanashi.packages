@@ -9,4 +9,6 @@ class RepositoryListPage extends MultipleLinkPage {
 	public $sortField = 'name';
 	
 	public $sortOrder = 'ASC';
+	
+	public $activeMenuItem = 'packages.acp.menu.link.package.repository.list';
 }
