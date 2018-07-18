@@ -33,7 +33,7 @@
 		
 		<!-- templates -->
 		<instruction type="acpTemplate" />
-		<instruction type="template" />
+		<!-- <instruction type="template" /> -->
 		
 		<!-- language -->
         <instruction type="language"/>

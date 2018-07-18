@@ -4,5 +4,4 @@ use packages\page\RepositoryListPage;
 use wcf\system\application\AbstractApplication;
 
 class PACKAGESCore extends AbstractApplication {
-	protected $primaryController = RepositoryListPage::class;
 }

@@ -1,0 +1,8 @@
+<?php
+namespace packages\action;
+
+class {className}Action extends AbstractPackageAction {
+	public $repositoryID = {repositoryID};
+	
+	public $repositoryName = '{repositoryName}';
+}

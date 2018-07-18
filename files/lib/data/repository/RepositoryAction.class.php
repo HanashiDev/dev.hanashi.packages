@@ -1,5 +1,6 @@
 <?php
 namespace packages\data\repository;
+use packages\system\repository\RepositoryActionHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\data\ISearchAction;
 use wcf\system\exception\PermissionDeniedException;
@@ -14,5 +15,13 @@ class RepositoryAction extends AbstractDatabaseObjectAction {
 				throw new PermissionDeniedException();
 			}
 		}
+	}
+	
+	public function create() {
+		$repository = parent::create();
+		
+		$repositoryActionHandler = new RepositoryActionHandler($repository);
+		$repositoryActionHandler->create();
+		return $repository;
 	}
 }
