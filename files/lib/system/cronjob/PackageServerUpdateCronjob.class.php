@@ -5,6 +5,7 @@ use filebase\data\file\ViewableFileList;
 use filebase\data\file\version\FileVersion;
 use filebase\data\file\version\FileVersionAction;
 use packages\data\repository\Repository;
+use packages\data\repository\RepositoryAction;
 use packages\data\repository\RepositoryList;
 use packages\system\repository\RepositoryWriter;
 use wcf\data\cronjob\Cronjob;
@@ -41,6 +42,7 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 		$fileList->getConditionBuilder()->add('categoryID IN (?)', [implode(',', $categoryIDs)]);
 		$fileList->readObjects();
 		
+		$packageCounter = 0;
 		foreach ($fileList as $file) {
 			if ($file->getLastVersion()->filesize > 0) {
 				$fileVersion = new FileVersion($file->lastVersionID);
@@ -76,8 +78,14 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 					'packageVersion' => $archive->getPackageInfo('version')
 				]]);
 				$objectAction->executeAction();
+				$packageCounter++;
 			}
 		}
+		$objectAction = new RepositoryAction([$repository], 'update', ['data' => [
+			'packesCount' => $packageCounter,
+			'lastUpdateTime' => time()
+		]]);
+		$objectAction->executeAction();
 		
 		$xml->save();
 	}

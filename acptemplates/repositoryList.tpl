@@ -36,6 +36,8 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>URL</th>
+					<th>Anzahl Pakete</th>
+					<th>Letzte Aktualisierung</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,6 +52,8 @@
 						<td class="columnText">
 							<a href="{$object->getLink()}" target="_blank">{$object->getLink()}</a>
 						</td>
+						<td class="columnText">{#$object->packesCount}</td>
+						<td class="columnText">{if $object->lastUpdateTime|empty}nie{else}{@$object->lastUpdateTime|time}{/if}</td>
 					</tr>
 				{/foreach}
 			</tbody>
