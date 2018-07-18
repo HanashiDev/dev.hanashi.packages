@@ -48,7 +48,7 @@
         <!-- <instruction type="userMenu" /> -->
         <!-- <instruction type="page" /> -->
         <instruction type="sql" />
-        <!-- <instruction type="userGroupOption" /> -->
+        <instruction type="userGroupOption" />
 		<instruction type="cronjob" />
         <!-- <instruction type="objectType" /> -->
     </instructions>

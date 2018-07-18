@@ -7,6 +7,10 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\WCF;
 
 class RepositoryAction extends AbstractDatabaseObjectAction {
+	protected $permissionsCreate = ['admin.packages.canManageRepository'];
+	
+	protected $permissionsDelete = ['admin.packages.canManageRepository'];
+	
 	public function validateDelete() {
 		parent::validateDelete();
         
@@ -23,5 +27,14 @@ class RepositoryAction extends AbstractDatabaseObjectAction {
 		$repositoryActionHandler = new RepositoryActionHandler($repository);
 		$repositoryActionHandler->create();
 		return $repository;
+	}
+	
+	public function delete() {
+		parent::delete();
+		
+		foreach ($this->objects as $object) {
+			$repositoryActionHandler = new RepositoryActionHandler($object->getDecoratedObject());
+			$repositoryActionHandler->delete();
+		}
 	}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/vortex/acpMenu.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/tornado/acpMenu.xsd">
 	<import>
 		<acpmenuitem name="packages.acp.menu.link.package">
 			<parent>wcf.acp.menu.link.application</parent>
@@ -8,13 +8,13 @@
 		<acpmenuitem name="packages.acp.menu.link.package.repository.list">
 			<controller>packages\acp\page\RepositoryListPage</controller>
 			<parent>packages.acp.menu.link.package</parent>
-			<!-- <permissions>admin.board.canEditBoard,admin.board.canDeleteBoard</permissions> -->
+			<permissions>admin.packages.canManageRepository</permissions>
 			<showorder>1</showorder>
 		</acpmenuitem>
 		<acpmenuitem name="packages.acp.menu.link.package.repository.add">
 			<controller>packages\acp\form\RepositoryAddForm</controller>
 			<parent>packages.acp.menu.link.package.repository.list</parent>
-			<!-- <permissions>admin.board.canAddBoard</permissions> -->
+			<permissions>admin.packages.canManageRepository</permissions>
 			<icon>fa-plus</icon>
 		</acpmenuitem>
 	</import>

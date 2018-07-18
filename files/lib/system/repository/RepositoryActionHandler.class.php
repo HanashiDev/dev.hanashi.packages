@@ -23,4 +23,12 @@ class RepositoryActionHandler {
 		
 		file_put_contents($classPathName, $template);
 	}
+	
+	public function delete() {
+		$className = StringUtil::firstCharToUpperCase($this->repository->name);
+		$classPathName = PACKAGES_DIR.'lib/action/'.$className.'Action.class.php';
+		
+		if (file_exists($classPathName))
+			unlink($classPathName);
+	}
 }

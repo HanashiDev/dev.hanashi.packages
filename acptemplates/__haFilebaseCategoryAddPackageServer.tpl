@@ -1,4 +1,4 @@
-{if $packagesFilebaseAdd|isset && $packagesFilebaseAdd}
+{if $packagesFilebaseAdd|isset && $packagesFilebaseAdd && $__wcf->session->getPermission('admin.packages.canManageRepository')}
 	<section class="section">
 		<h2 class="sectionTitle">Paket-Server</h2>
 		
