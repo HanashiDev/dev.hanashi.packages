@@ -47,7 +47,7 @@
 						</td>
 						<td class="columnID">{#$object->repositoryID}</td>
 						<td class="columnText">{$object->name}</td>
-						<td class="columnText">TODO: URL einfügen</td>
+						<td class="columnText">{$object->getLink()}</td>
 					</tr>
 				{/foreach}
 			</tbody>

@@ -27,7 +27,7 @@
 						{else if $errorType == 'noNumberOnStart'}
 							Der Repository-Name darf nicht mit einer Zahl beginnen.
 						{else if $errorType == 'wrongFormat'}
-							Der Repository-Name darf lediglich folgende Zeichen enthalten: a-Z, 0-9
+							Der Repository-Name darf lediglich folgende Zeichen enthalten: a-z, 0-9
 						{else if $errorType == 'nameTooLong'}
 							Der Repository-Name ist zu lang. Er darf maximal 20 Zeichen lang sein.
 						{else if $errorType == 'alreadyUsed'}
@@ -35,7 +35,7 @@
 						{/if}
 					</small>
 				{/if}
-				<small>Gib den Repository-Namen ein. Der Name darf lediglich folgende Zeichen enthalten: a-Z, 0-9</small>
+				<small>Gib den Repository-Namen ein. Der Name darf lediglich folgende Zeichen enthalten: a-z, 0-9</small>
 			</dd>
 		</dl>
 	</section>

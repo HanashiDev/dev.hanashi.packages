@@ -25,7 +25,7 @@ class RepositoryAddForm extends AbstractForm {
 			throw new UserInputException('name', 'tooShort');
 		if (preg_match('/^[0-9]+$/', substr($this->name, 0, 1)))
 			throw new UserInputException('name', 'noNumberOnStart');
-		if (!preg_match('/^[a-zA-Z0-9]+$/', $this->name))
+		if (!preg_match('/^[a-z0-9]+$/', $this->name))
 			throw new UserInputException('name', 'wrongFormat');
 		if (strlen($this->name) > 20)
 			throw new UserInputException('name', 'nameTooLong');
