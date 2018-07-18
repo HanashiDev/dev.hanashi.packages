@@ -35,18 +35,18 @@ class FilebaseCategoryEditFormListener implements IParameterizedEventListener {
 			if ($this->packageServer == 1) {
 				$eventObj->additionalFields = array_merge($eventObj->additionalFields, [
 					'isPackageServer' => $this->packageServer,
-					'respositoryID' => $this->repository
+					'repositoryID' => $this->repository
 				]);
 			} else if ($this->packageServer == 0) {
 				$eventObj->additionalFields = array_merge($eventObj->additionalFields, [
 					'isPackageServer' => $this->packageServer,
-					'respositoryID' => null
+					'repositoryID' => null
 				]);
 			}
 		} else if ($eventName == 'assignVariables') {
 			if (empty($_POST) && $eventObj instanceof CategoryEditForm) {
 				$this->packageServer = $eventObj->category->isPackageServer;
-				$this->repository = $eventObj->category->respositoryID;
+				$this->repository = $eventObj->category->repositoryID;
 			}
 			
 			$repositoryList = new RepositoryList();
