@@ -5,4 +5,41 @@
 		<item name="packages.acp.menu.link.package.repository.list"><![CDATA[Repositorys]]></item>
 		<item name="packages.acp.menu.link.package.repository.add"><![CDATA[Hinzufügen]]></item>
 	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.packages"><![CDATA[Paket-Server]]></item>
+		<item name="wcf.acp.group.option.admin.packages.canManageRepository"><![CDATA[Kann Repositorys verwalten]]></item>
+	</category>
+	
+	<category name="packages.page.filebaseCategoryAdd">
+		<item name="packages.page.filebaseCategoryAdd.title"><![CDATA[Paket-Server]]></item>
+		<item name="packages.page.filebaseCategoryAdd.packageServer"><![CDATA[Kategorie soll in Paket-Server aufgenommen werden]]></item>
+		<item name="packages.page.filebaseCategoryAdd.packageServer.description"><![CDATA[Wenn die Option aktiviert ist, wird diese Kategorie in den Paketserver mit aufgenommen.]]></item>
+		<item name="packages.page.filebaseCategoryAdd.repository"><![CDATA[Paket-Server-Repository]]></item>
+		<item name="packages.page.filebaseCategoryAdd.repository.error.empty"><![CDATA[Es muss ein Repository ausgewählt sein.]]></item>
+		<item name="packages.page.filebaseCategoryAdd.repository.error.notExist"><![CDATA[Das ausgewählte Repository existiert nicht.]]></item>
+	</category>
+	
+	<category name="packages.page.repositoryAdd">
+		<item name="packages.page.repositoryAdd.title"><![CDATA[Repository hinzufügen]]></item>
+		<item name="packages.page.repositoryAdd.scuccess"><![CDATA[Das Repository wurde erfolgreich angelegt. Du kannst es nun in den Filebase-Kategorien auswählen.]]></item>
+		<item name="packages.page.repositoryAdd.name"><![CDATA[Repository-Name]]></item>
+		<item name="packages.page.repositoryAdd.name.description"><![CDATA[Gib den Repository-Namen ein. Der Name darf lediglich folgende Zeichen enthalten: a-z, 0-9]]></item>
+		<item name="packages.page.repositoryAdd.name.error.tooShort"><![CDATA[Der Repository-Name ist zu kurz. Er muss mindestens 2 Zeichen lang sein.]]></item>
+		<item name="packages.page.repositoryAdd.name.error.noNumberOnStart"><![CDATA[Der Repository-Name darf nicht mit einer Zahl beginnen.]]></item>
+		<item name="packages.page.repositoryAdd.name.error.wrongFormat"><![CDATA[Der Repository-Name darf lediglich folgende Zeichen enthalten: a-z, 0-9]]></item>
+		<item name="packages.page.repositoryAdd.name.error.nameTooLong"><![CDATA[Der Repository-Name ist zu lang. Er darf maximal 20 Zeichen lang sein.]]></item>
+		<item name="packages.page.repositoryAdd.name.error.alreadyUsed"><![CDATA[Es gibt bereits ein Repository mit diesem Namen.]]></item>
+	</category>
+	
+	<category name="packages.page.repositoryList">
+		<item name="packages.page.repositoryList.title"><![CDATA[Repositorys]]></item>
+		<item name="packages.page.repositoryList.repositoryAdd"><![CDATA[Repository hinzufügen]]></item>
+		<item name="packages.page.repositoryList.table.id"><![CDATA[ID]]></item>
+		<item name="packages.page.repositoryList.table.name"><![CDATA[Name]]></item>
+		<item name="packages.page.repositoryList.table.url"><![CDATA[URL]]></item>
+		<item name="packages.page.repositoryList.table.countPackages"><![CDATA[Anzahl Pakete]]></item>
+		<item name="packages.page.repositoryList.table.lastUpdate"><![CDATA[Letzte Aktualisierung]]></item>
+		<item name="packages.page.repositoryList.removeRepositoryQuestion"><![CDATA[Repository wirklich löschen?]]></item>
+	</category>
 </language>

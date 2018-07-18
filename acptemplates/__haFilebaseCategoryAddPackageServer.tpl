@@ -1,9 +1,9 @@
 {if $packagesFilebaseAdd|isset && $packagesFilebaseAdd && $__wcf->session->getPermission('admin.packages.canManageRepository')}
 	<section class="section">
-		<h2 class="sectionTitle">Paket-Server</h2>
+		<h2 class="sectionTitle">{lang}packages.page.filebaseCategoryAdd.title{/lang}</h2>
 		
 		<dl>
-			<dt>Kategorie soll in Paket-Server aufgenommen werden</dt>
+			<dt>{lang}packages.page.filebaseCategoryAdd.packageServer{/lang}</dt>
 			<dd>
 				<ol class="flexibleButtonGroup optionTypeBoolean">
 					<li>
@@ -15,12 +15,12 @@
 						<label for="post_title_no" class="red"><span class="icon icon16 fa-times"></span> {lang}wcf.acp.option.type.boolean.no{/lang}</label>
 					</li>
 				</ol>
-				<small>Wenn die Option aktiviert ist, wird diese Kategorie in den Paketserver mit aufgenommen.</small>
+				<small>{lang}packages.page.filebaseCategoryAdd.packageServer.description{/lang}</small>
 			</dd>
 		</dl>
 		<dl{if $errorField == 'repository'} class="formError"{/if}>
 			<dd>
-				<dt>Paket-Server-Repository</dt>
+				<dt>{lang}packages.page.filebaseCategoryAdd.repository{/lang}</dt>
 				<dd>
 					<select name="repository">
 						<option></option>
@@ -31,9 +31,9 @@
 					{if $errorField == 'repository'}
 						<small class="innerError">
 							{if $errorType == 'empty'}
-								Es muss ein Repository ausgewählt sein.
+								{lang}packages.page.filebaseCategoryAdd.repository.error.empty{/lang}
 							{else if $errorType == 'notExist'}
-								Das ausgewählte Repository existiert nicht.
+								{lang}packages.page.filebaseCategoryAdd.repository.error.notExist{/lang}
 							{/if}
 						</small>
 					{/if}

@@ -1,4 +1,4 @@
-{include file='header' pageTitle='packages.acp.page.repository_list.title'}
+{include file='header' pageTitle='packages.page.repositoryList.title'}
 
 <script data-relocate="true">
 	$(function() {
@@ -8,12 +8,12 @@
 
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
-		<h1 class="contentTitle">Repositorys</h1>
+		<h1 class="contentTitle">{lang}packages.page.repositoryList.title{/lang}</h1>
 	</div>
 	
 	<nav class="contentHeaderNavigation">
 		<ul>
-			<li><a href="{link application='packages' controller='RepositoryAdd'}{/link}" class="button"><span class="icon icon16 fa-plus"></span> <span>Repository hinzufügen</span></a></li>
+			<li><a href="{link application='packages' controller='RepositoryAdd'}{/link}" class="button"><span class="icon icon16 fa-plus"></span> <span>{lang}packages.page.repositoryList.repositoryAdd{/lang}</span></a></li>
 			{event name='contentHeaderNavigation'}
 		</ul>
 	</nav>
@@ -33,18 +33,18 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>ID</th>
-					<th>Name</th>
-					<th>URL</th>
-					<th>Anzahl Pakete</th>
-					<th>Letzte Aktualisierung</th>
+					<th>{lang}packages.page.repositoryList.table.id{/lang}</th>
+					<th>{lang}packages.page.repositoryList.table.name{/lang}</th>
+					<th>{lang}packages.page.repositoryList.table.url{/lang}</th>
+					<th>{lang}packages.page.repositoryList.table.countPackages{/lang}</th>
+					<th>{lang}packages.page.repositoryList.table.lastUpdate{/lang}</th>
 				</tr>
 			</thead>
 			<tbody>
 				{foreach from=$objects item=object}
 					<tr class="jsRow">
 						<td class="columnIcon">
-							<span class="icon icon16 fa-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$object->repositoryID}" data-confirm-message="Repository wirklich löschen?"></span>
+							<span class="icon icon16 fa-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$object->repositoryID}" data-confirm-message="{lang}packages.page.repositoryList.removeRepositoryQuestion{/lang}"></span>
 							{event name='rowButtons'}
 						</td>
 						<td class="columnID">{#$object->repositoryID}</td>
