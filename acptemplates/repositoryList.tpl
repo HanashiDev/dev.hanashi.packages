@@ -47,7 +47,9 @@
 						</td>
 						<td class="columnID">{#$object->repositoryID}</td>
 						<td class="columnText">{$object->name}</td>
-						<td class="columnText">{$object->getLink()}</td>
+						<td class="columnText">
+							<a href="{$object->getLink()}" target="_blank">{$object->getLink()}</a>
+						</td>
 					</tr>
 				{/foreach}
 			</tbody>

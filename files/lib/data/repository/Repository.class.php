@@ -22,4 +22,8 @@ class Repository extends DatabaseObject implements IRouteController {
 	public function getLink() {
 		return LinkHandler::getInstance()->getLink(StringUtil::firstCharToUpperCase($this->name), ['forceFrontend' => true, 'application' => 'packages']);
 	}
+	
+	public function getCacheFile() {
+		return WCF_DIR.'cache/cache.packages_'.$this->name.'.xml';
+	}
 }

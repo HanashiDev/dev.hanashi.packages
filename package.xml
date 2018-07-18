@@ -49,7 +49,7 @@
         <!-- <instruction type="page" /> -->
         <instruction type="sql" />
         <!-- <instruction type="userGroupOption" /> -->
-		<!-- <instruction type="cronjob" /> -->
+		<instruction type="cronjob" />
         <!-- <instruction type="objectType" /> -->
     </instructions>
 </package>
