@@ -5,6 +5,7 @@ use packages\data\repository\Repository;
 use wcf\data\user\User;
 use wcf\action\AbstractAction;
 use wcf\system\exception\UserInputException;
+use wcf\system\user\authentication\EmailUserAuthentication;
 use wcf\system\user\authentication\UserAuthenticationFactory;
 use wcf\system\WCF;
 
@@ -76,7 +77,15 @@ abstract class AbstractPackageAction extends AbstractAction {
 			try {
 				$user = UserAuthenticationFactory::getInstance()->getUserAuthentication()->loginManually($_SERVER['PHP_AUTH_USER'], $_SERVER["PHP_AUTH_PW"]);
 			} catch (UserInputException $e) {
-				$this->authHeader();
+				if ($e->getField() == 'username') {
+					try {
+						$user = EmailUserAuthentication::getInstance()->loginManually($_SERVER['PHP_AUTH_USER'], $_SERVER["PHP_AUTH_PW"]);
+					} catch (UserInputException $e2) {
+						$this->authHeader();
+					}
+				} else {
+					$this->authHeader();
+				}
 			}
 			WCF::getSession()->changeUser($user);
 			if (!$fileVersion->canDownload()) {
