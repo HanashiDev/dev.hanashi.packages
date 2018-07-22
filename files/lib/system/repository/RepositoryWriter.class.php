@@ -23,13 +23,13 @@ class RepositoryWriter extends XML {
 		$this->section->appendChild($this->createSimpleAttribute('xsi:schemaLocation', 'http://www.woltlab.com https://www.woltlab.com/XSD/tornado/packageUpdateServer.xsd'));
 	}
 	
-	public function createPackage($name, $packageName, $packageDescription, $authorName, $authorURL, $version, $versionTime, $updateType = 'install', $requiredPackages = [], $excludedPackages = [], $updateInstructions = null, $license = 'free', $isApplication = 0, $requireAuth = 'false') {
+	public function createPackage($name, $packageName, $packageDescription, $authorName, $authorURL, $versions, $isApplication, $license) {
 		$package = $this->document->createElement('package');
 		$package->appendChild($this->createSimpleAttribute('name', $name));
 		
 		$package->appendChild($this->createPackageInformation($packageName, $packageDescription, $isApplication));
 		$package->appendChild($this->createAuthorInformation($authorName, $authorURL));
-		$package->appendChild($this->createVersions($version, $versionTime, $updateType, $requiredPackages, $excludedPackages, $updateInstructions, $license, $requireAuth));
+		$package->appendChild($this->createVersions($versions, $license));
 		
 		$this->packages[] = $package;
 	}
@@ -54,12 +54,14 @@ class RepositoryWriter extends XML {
 		return $authorinformation;
 	}
 	
-	protected function createVersions($version, $versionTime, $updateType, $requiredPackages, $excludedPackages, $updateInstructions, $license, $requireAuth) {
-		$versions = $this->document->createElement('versions');
+	protected function createVersions($versions, $license) {
+		$versionsNode = $this->document->createElement('versions');
 		
-		$versions->appendChild($this->createVersion($version, $versionTime, $updateType, $requiredPackages, $excludedPackages, $updateInstructions, $license, $requireAuth));
+		foreach ($versions as $version) {
+			$versionsNode->appendChild($this->createVersion($version['version'], $version['timestamp'], $version['updateType'], $version['requiredPackages'], $version['excludedPackages'], $version['instructions'], $license, $version['requireAuth']));
+		}
 		
-		return $versions;
+		return $versionsNode;
 	}
 	
 	protected function createVersion($versionNr, $versionTime, $updateType, $requiredPackages, $excludedPackages, $updateInstructions, $license, $requireAuth) {

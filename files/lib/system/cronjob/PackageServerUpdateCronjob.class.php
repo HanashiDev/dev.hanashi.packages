@@ -2,6 +2,7 @@
 namespace packages\system\cronjob;
 use filebase\data\file\ViewableFileList;
 use filebase\data\file\version\FileVersion;
+use filebase\data\file\version\FileVersionList;
 use filebase\data\file\version\FileVersionAction;
 use packages\data\repository\Repository;
 use packages\data\repository\RepositoryAction;
@@ -39,10 +40,41 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 		
 		$packageCounter = 0;
 		foreach ($fileList as $file) {
-			if ($file->getLastVersion()->filesize > 0) {
-				$fileVersion = new FileVersion($file->lastVersionID);
-				$fileVersion->getFile();
-				
+			if ($file->getLastVersion()->filesize == 0) {
+				continue;
+			}
+			
+			// TODO: Debug
+			if ($file->fileID != 6)
+				continue;
+			
+			$fileVersion = new FileVersion($file->lastVersionID);
+			$fileVersion->getFile();
+			
+			$archive = new PackageArchive($fileVersion->getLocation());
+			try {
+				$archive->openArchive();
+			} catch (PackageValidationException $e) {
+				continue;
+			}
+			
+			$packageNameArr = $archive->getPackageInfo('packageName');
+			$packageDescriptionArr = $archive->getPackageInfo('packageDescription');
+			
+			$name = $archive->getPackageInfo('name');
+			$packageName = $packageNameArr['default'];
+			$packageDescription = $packageDescriptionArr['default'];
+			$author = $archive->getAuthorInfo('author');
+			$authorUrl = $archive->getAuthorInfo('authorURL');
+			$isApplication = $archive->getPackageInfo('isApplication');
+			$license = ($file->isCommercial == 1) ? 'commercial' : 'free';
+			
+			$fileVersionList = new FileVersionList();
+			$fileVersionList->getConditionBuilder()->add('fileID = ?', [$file->fileID]);
+			$fileVersionList->readObjects();
+			
+			$versions = [];
+			foreach ($fileVersionList as $fileVersion) {
 				$archive = new PackageArchive($fileVersion->getLocation());
 				try {
 					$archive->openArchive();
@@ -50,24 +82,15 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 					continue;
 				}
 				
-				$packageNameArr = $archive->getPackageInfo('packageName');
-				$packageDescriptionArr = $archive->getPackageInfo('packageDescription');
-				$xml->createPackage(
-					$archive->getPackageInfo('name'),
-					$packageNameArr['default'],
-					$packageDescriptionArr['default'],
-					$archive->getAuthorInfo('author'),
-					$archive->getAuthorInfo('authorURL'),
-					$archive->getPackageInfo('version'),
-					$fileVersion->uploadTime,
-					($archive->getInstructions('update') == null) ? 'install' : 'update',
-					$archive->getRequirements(),
-					$archive->getExcludedPackages(),
-					$archive->getInstructions('update'),
-					($file->isCommercial == 1) ? 'commercial' : 'free', 
-					$archive->getPackageInfo('isApplication'),
-					($fileVersion->canDownload()) ? 'false' : 'true'
-				);
+				$versions[] = [
+					'version' => $archive->getPackageInfo('version'),
+					'timestamp' => $fileVersion->uploadTime,
+					'updateType' => ($archive->getInstructions('update') == null) ? 'install' : 'update',
+					'requiredPackages' => $archive->getRequirements(),
+					'excludedPackages' => $archive->getExcludedPackages(),
+					'instructions' => $archive->getInstructions('update'),
+					'requireAuth' => ($fileVersion->canDownload()) ? 'false' : 'true'
+				];
 				
 				$objectAction = new FileVersionAction([$fileVersion], 'update', ['data' => [
 					'packageName' => $archive->getPackageInfo('name'),
@@ -75,8 +98,20 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 					'repositoryID' => $repository->repositoryID
 				]]);
 				$objectAction->executeAction();
-				$packageCounter++;
 			}
+			
+			$xml->createPackage(
+				$name,
+				$packageName,
+				$packageDescription,
+				$author,
+				$authorUrl,
+				$versions,
+				$isApplication,
+				$license
+			);
+			
+			$packageCounter++;
 		}
 		$objectAction = new RepositoryAction([$repository], 'update', ['data' => [
 			'packesCount' => $packageCounter,
