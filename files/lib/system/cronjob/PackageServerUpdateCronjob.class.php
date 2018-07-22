@@ -44,10 +44,6 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 				continue;
 			}
 			
-			// TODO: Debug
-			if ($file->fileID != 6)
-				continue;
-			
 			$fileVersion = new FileVersion($file->lastVersionID);
 			$fileVersion->getFile();
 			
