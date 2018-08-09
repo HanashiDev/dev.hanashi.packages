@@ -59,7 +59,9 @@ class PackageServerUpdateCronjob extends AbstractCronjob {
 			
 			$name = $archive->getPackageInfo('name');
 			$packageName = $packageNameArr['default'];
-			$packageDescription = $packageDescriptionArr['default'];
+			$packageDescription = '';
+			if (isset($packageDescriptionArr['default']))
+				$packageDescription = $packageDescriptionArr['default'];
 			$author = $archive->getAuthorInfo('author');
 			$authorUrl = $archive->getAuthorInfo('authorURL');
 			$isApplication = $archive->getPackageInfo('isApplication');

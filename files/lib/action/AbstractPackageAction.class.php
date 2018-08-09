@@ -1,6 +1,8 @@
 <?php
 namespace packages\action;
 use filebase\data\file\version\FileVersionList;
+use filebase\data\file\version\FileVersionEditor;
+use filebase\data\file\FileEditor;
 use packages\data\repository\Repository;
 use wcf\data\user\User;
 use wcf\action\AbstractAction;
@@ -68,6 +70,15 @@ abstract class AbstractPackageAction extends AbstractAction {
 		header('Content-type: '.$fileVersion->fileType);
 		header('Content-disposition: attachment; filename="'.$fileVersion->filename.'"');
 		echo file_get_contents($location);
+		
+		$editor = new FileEditor($fileVersion->getFile());
+		$editor->updateCounters([
+			'downloads' => 1
+		]);
+		$editor = new FileVersionEditor($fileVersion);
+		$editor->updateCounters([
+			'downloads' => 1
+		]);
 	}
 	
 	protected function authenticate($fileVersion) {

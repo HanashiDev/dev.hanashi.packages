@@ -4,8 +4,8 @@
         <packagename><![CDATA[Package server by Hanashi]]></packagename>
         <packagedescription><![CDATA[Ein kleiner Paketserver der auf die Filebase von WoltLab aufbaut.]]></packagedescription>
 		<isapplication>1</isapplication>
-        <version>1.0.0 Alpha 4</version>
-        <date>2018-07-22</date>
+        <version>1.0.0 Alpha 5</version>
+        <date>2018-08-09</date>
     </packageinformation>
 
     <authorinformation>
@@ -47,7 +47,7 @@
         <instruction type="userGroupOption" />
 		<instruction type="cronjob" />
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 3">
+	<instructions type="update" fromversion="1.0.0 Alpha 4">
 		<!-- files -->
         <instruction type="file" />
 	</instructions>
