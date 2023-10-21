@@ -40,7 +40,7 @@ return [
                 ->columns(['repositoryID'])
                 ->referencedTable('packages1_repository')
                 ->referencedColumns(['repositoryID'])
-                ->onDelete('SET NULL')
+                ->onDelete('SET NULL'),
         ]),
     PartialDatabaseTable::create('filebase1_file_version')
         ->columns([
@@ -56,6 +56,6 @@ return [
                 ->columns(['repositoryID'])
                 ->referencedTable('packages1_repository')
                 ->referencedColumns(['repositoryID'])
-                ->onDelete('SET NULL')
+                ->onDelete('SET NULL'),
         ]),
 ];
