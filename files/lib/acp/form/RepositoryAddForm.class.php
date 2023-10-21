@@ -4,75 +4,77 @@ namespace packages\acp\form;
 
 use packages\data\repository\RepositoryAction;
 use packages\data\repository\RepositoryList;
-use wcf\form\AbstractForm;
-use wcf\system\exception\UserInputException;
-use wcf\system\WCF;
+use wcf\form\AbstractFormBuilderForm;
+use wcf\system\form\builder\container\FormContainer;
+use wcf\system\form\builder\field\TextFormField;
+use wcf\system\form\builder\field\validation\FormFieldValidationError;
+use wcf\system\form\builder\field\validation\FormFieldValidator;
 
-class RepositoryAddForm extends AbstractForm
+class RepositoryAddForm extends AbstractFormBuilderForm
 {
+    /**
+     * @inheritDoc
+     */
+    public $objectActionClass = RepositoryAction::class;
+
+    /**
+     * @inheritDoc
+     */
     public $activeMenuItem = 'packages.acp.menu.link.package.repository.add';
 
-    protected $name;
-
-    public function readFormParameters()
+    /**
+     * @inheritDoc
+     */
+    protected function createForm()
     {
-        parent::readFormParameters();
+        parent::createForm();
 
-        if (isset($_POST['name'])) {
-            $this->name = $_POST['name'];
-        }
-    }
+        $this->form->appendChildren([
+            FormContainer::create('data')
+                ->appendChildren([
+                    TextFormField::create('name')
+                        ->label('packages.page.repositoryAdd.name')
+                        ->description('packages.page.repositoryAdd.name.description')
+                        ->required()
+                        ->maximumLength(20)
+                        ->minimumLength(2)
+                        ->addValidator(
+                            new FormFieldValidator('formatCheck', static function (TextFormField $formField) {
+                                if (\preg_match('/^[0-9]+$/', \substr($formField->getValue(), 0, 1))) {
+                                    $formField->addValidationError(
+                                        new FormFieldValidationError(
+                                            'noNumberOnStart',
+                                            'packages.page.repositoryAdd.name.error.noNumberOnStart'
+                                        )
+                                    );
 
-    public function validate()
-    {
-        parent::validate();
+                                    return;
+                                }
+                                if (!\preg_match('/^[a-z0-9]+$/', $formField->getValue())) {
+                                    $formField->addValidationError(
+                                        new FormFieldValidationError(
+                                            'wrongFormat',
+                                            'packages.page.repositoryAdd.name.error.wrongFormat'
+                                        )
+                                    );
 
-        if (\strlen($this->name) < 2) {
-            throw new UserInputException('name', 'tooShort');
-        }
-        if (\preg_match('/^[0-9]+$/', \substr($this->name, 0, 1))) {
-            throw new UserInputException('name', 'noNumberOnStart');
-        }
-        if (!\preg_match('/^[a-z0-9]+$/', $this->name)) {
-            throw new UserInputException('name', 'wrongFormat');
-        }
-        if (\strlen($this->name) > 20) {
-            throw new UserInputException('name', 'nameTooLong');
-        }
+                                    return;
+                                }
 
-        $repositoryList = new RepositoryList();
-        $repositoryList->getConditionBuilder()->add('name = ?', [$this->name]);
-        $repositoryList->readObjects();
-        if (\count($repositoryList) > 0) {
-            throw new UserInputException('name', 'alreadyUsed');
-        }
-    }
-
-    public function save()
-    {
-        parent::save();
-
-        $this->objectAction = new RepositoryAction([], 'create', ['data' => [
-            'name' => $this->name,
-        ]]);
-        $this->objectAction->executeAction();
-
-        $this->saved();
-    }
-
-    public function saved()
-    {
-        parent::saved();
-
-        WCF::getTPL()->assign('success', true);
-    }
-
-    public function assignVariables()
-    {
-        parent::assignVariables();
-
-        WCF::getTPL()->assign([
-            'name' => $this->name,
+                                $repositoryList = new RepositoryList();
+                                $repositoryList->getConditionBuilder()->add('name = ?', [$formField->getValue()]);
+                                $repositoryList->readObjects();
+                                if (\count($repositoryList) > 0) {
+                                    $formField->addValidationError(
+                                        new FormFieldValidationError(
+                                            'alreadyUsed',
+                                            'packages.page.repositoryAdd.name.error.alreadyUsed'
+                                        )
+                                    );
+                                }
+                            })
+                        ),
+                ]),
         ]);
     }
 }
