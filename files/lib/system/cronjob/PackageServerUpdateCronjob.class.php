@@ -90,10 +90,10 @@ class PackageServerUpdateCronjob extends AbstractCronjob
                 $versions[] = [
                     'version' => $archive->getPackageInfo('version'),
                     'timestamp' => $fileVersion->uploadTime,
-                    'updateType' => ($archive->getInstructions('update') == null) ? 'install' : 'update',
+                    'updateType' => ($archive->getAllUpdateInstructions() === []) ? 'install' : 'update',
                     'requiredPackages' => $archive->getRequirements(),
                     'excludedPackages' => $archive->getExcludedPackages(),
-                    'instructions' => $archive->getInstructions('update'),
+                    'instructions' => $archive->getAllUpdateInstructions(),
                     'requireAuth' => ($fileVersion->canDownload()) ? 'false' : 'true',
                 ];
 
