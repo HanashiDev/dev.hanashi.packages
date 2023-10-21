@@ -30,7 +30,7 @@ class RepositoryWriter extends XML
         $this->section->appendChild(
             $this->createSimpleAttribute(
                 'xsi:schemaLocation',
-                'http://www.woltlab.com https://www.woltlab.com/XSD/tornado/packageUpdateServer.xsd'
+                'http://www.woltlab.com http://www.woltlab.com/XSD/6.0/packageUpdateServer.xsd'
             )
         );
     }
