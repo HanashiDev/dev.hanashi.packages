@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/cronjob.xsd">
 	<import>
-		<cronjob>
+		<cronjob name="dev.hanashi.package.update">
 			<classname>packages\system\cronjob\PackageServerUpdateCronjob</classname>
 			<description><![CDATA[Refreshs cache of package server.]]></description>
 			<description language="de"><![CDATA[Aktualisiert den Cache des Paket-Servers.]]></description>

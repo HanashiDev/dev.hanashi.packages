@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="eu.hanashi.packages" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/tornado/package.xsd">
+<package name="dev.hanashi.packages" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/package.xsd">
     <packageinformation>
-        <packagename><![CDATA[Package server by Hanashi]]></packagename>
+        <packagename><![CDATA[Package server]]></packagename>
         <packagedescription><![CDATA[Ein kleiner Paketserver der auf die Filebase von WoltLab aufbaut.]]></packagedescription>
 		<isapplication>1</isapplication>
-        <version>1.0.0 Alpha 6</version>
-        <date>2019-12-10</date>
+        <version>1.0.0</version>
+        <date>2023-10-21</date>
     </packageinformation>
 
     <authorinformation>
-        <author><![CDATA[Hanashi]]></author>
-        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
+        <author><![CDATA[Hanashi Development]]></author>
+        <authorurl><![CDATA[https://hanashi.dev/]]></authorurl>
     </authorinformation>
-	
-	<compatibility>
-		<api version="2017" />
-		<api version="2018" />
-	</compatibility>
 
     <requiredpackages>
-        <requiredpackage minversion="3.0.0">com.woltlab.wcf</requiredpackage>
-        <requiredpackage minversion="3.0.0">com.woltlab.filebase</requiredpackage>
+        <requiredpackage minversion="6.0.2">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="6.0.1">com.woltlab.filebase</requiredpackage>
     </requiredpackages>
 
     <instructions type="install">
 		<!-- files -->
-        <instruction type="file" />
+        <instruction type="file" application="packages" />
 		
 		<!-- templates -->
-		<instruction type="acpTemplate" />
+		<instruction type="acpTemplate" application="packages" />
 		
 		<!-- language -->
         <instruction type="language"/>
@@ -39,12 +34,8 @@
 		
 		<!-- config -->
         <instruction type="acpMenu" />
-        <instruction type="sql" />
         <instruction type="userGroupOption" />
 		<instruction type="cronjob" />
+        <instruction type="database">acp/database/install_dev.hanashi.packages.php</instruction>
     </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 5">
-		<!-- files -->
-        <instruction type="file" />
-	</instructions>
 </package>
