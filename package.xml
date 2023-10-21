@@ -1,50 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package name="eu.hanashi.packages" xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/tornado/package.xsd">
-    <packageinformation>
-        <packagename><![CDATA[Package server by Hanashi]]></packagename>
-        <packagedescription><![CDATA[Ein kleiner Paketserver der auf die Filebase von WoltLab aufbaut.]]></packagedescription>
+<package xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/package.xsd" name="dev.hanashi.packages">
+	<packageinformation>
+		<!-- dev.hanashi.packages -->
+		<packagename>Package server</packagename>
+		<packagedescription>Ein kleiner Paketserver der auf die Filebase von WoltLab aufbaut.</packagedescription>
 		<isapplication>1</isapplication>
-        <version>1.0.0 Alpha 6</version>
-        <date>2019-12-10</date>
-    </packageinformation>
-
-    <authorinformation>
-        <author><![CDATA[Hanashi]]></author>
-        <authorurl><![CDATA[https://hanashi.eu/]]></authorurl>
-    </authorinformation>
-	
-	<compatibility>
-		<api version="2017" />
-		<api version="2018" />
-	</compatibility>
-
-    <requiredpackages>
-        <requiredpackage minversion="3.0.0">com.woltlab.wcf</requiredpackage>
-        <requiredpackage minversion="3.0.0">com.woltlab.filebase</requiredpackage>
-    </requiredpackages>
-
-    <instructions type="install">
-		<!-- files -->
-        <instruction type="file" />
-		
-		<!-- templates -->
-		<instruction type="acpTemplate" />
-		
-		<!-- language -->
-        <instruction type="language"/>
-		
-		<!-- listener -->
-        <instruction type="eventListener" />
-		<instruction type="templateListener" />
-		
-		<!-- config -->
-        <instruction type="acpMenu" />
-        <instruction type="sql" />
-        <instruction type="userGroupOption" />
-		<instruction type="cronjob" />
-    </instructions>
-	<instructions type="update" fromversion="1.0.0 Alpha 5">
-		<!-- files -->
-        <instruction type="file" />
+		<version>1.1.0</version>
+		<date>2023-10-21</date>
+	</packageinformation>
+	<authorinformation>
+		<author>Hanashi Development</author>
+		<authorurl>https://hanashi.dev/</authorurl>
+	</authorinformation>
+	<requiredpackages>
+		<requiredpackage minversion="6.0.2">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="6.0.1">com.woltlab.filebase</requiredpackage>
+	</requiredpackages>
+	<excludedpackages>
+		<excludedpackage version="7.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
+		<excludedpackage version="7.0.0 Alpha 1">com.woltlab.filebase</excludedpackage>
+	</excludedpackages>
+	<instructions type="install">
+		<instruction type="file" application="packages"/>
+		<instruction type="acpTemplate" application="packages"/>
+		<instruction type="language"/>
+		<instruction type="eventListener"/>
+		<instruction type="templateListener"/>
+		<instruction type="acpMenu"/>
+		<instruction type="userGroupOption"/>
+		<instruction type="cronjob"/>
+		<instruction type="database">acp/database/install_dev.hanashi.packages.php</instruction>
 	</instructions>
 </package>

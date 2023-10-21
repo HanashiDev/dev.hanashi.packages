@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<data xmlns="https://www.woltlab.com" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/vortex/eventListener.xsd">
-    <import>
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/6.0/eventListener.xsd">
+	<import>
 		<eventlistener name="filebaseCategoryEditFormListener">
 			<eventclassname>filebase\acp\form\CategoryEditForm</eventclassname>
 			<eventname>readFormParameters,validate,save,assignVariables</eventname>
+			<listenerclassname>packages\system\event\listener\FilebaseCategoryEditFormListener</listenerclassname>
 			<environment>admin</environment>
 			<inherit>1</inherit>
-			<listenerclassname>packages\system\event\listener\FilebaseCategoryEditFormListener</listenerclassname>
 		</eventlistener>
 		<eventlistener name="filebaseCategoryAddFormListener">
 			<eventclassname>filebase\acp\form\CategoryAddForm</eventclassname>
@@ -15,5 +15,5 @@
 			<inherit>1</inherit>
 			<listenerclassname>packages\system\event\listener\FilebaseCategoryEditFormListener</listenerclassname>
 		</eventlistener>
-    </import>
+	</import>
 </data>

@@ -1,6 +1,11 @@
 <?php
-define('RELATIVE_PACKAGES_DIR', '../');
 
-require_once(dirname(dirname(__FILE__)).'/config.inc.php');
+\define('RELATIVE_PACKAGES_DIR', '../');
 
-require_once(RELATIVE_WCF_DIR.'acp/global.php');
+// include config
+/** @noinspection PhpIncludeInspection */
+require_once(\dirname(__DIR__) . '/app.config.inc.php');
+
+// include wcf
+/** @noinspection PhpIncludeInspection */
+require_once(RELATIVE_WCF_DIR . 'acp/global.php');

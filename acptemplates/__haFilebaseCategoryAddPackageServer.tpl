@@ -8,11 +8,11 @@
 				<ol class="flexibleButtonGroup optionTypeBoolean">
 					<li>
 						<input type="radio" id="post_title_yes"{if $packageServer == 1} checked=""{/if} name="values[packageServer]" value="1" class="jsEnablesOptions" data-is-boolean="true" data-disable-options="[ ]" data-enable-options="[ ]">
-						<label for="post_title_yes" class="green"><span class="icon icon16 fa-check"></span> {lang}wcf.acp.option.type.boolean.yes{/lang}</label>
+						<label for="post_title_yes" class="green">{icon name='check' size=16} {lang}wcf.acp.option.type.boolean.yes{/lang}</label>
 					</li>
 					<li>
 						<input type="radio" id="post_title_no"{if $packageServer == 0} checked=""{/if} name="values[packageServer]" value="0" class="jsEnablesOptions" data-is-boolean="true" data-disable-options="[ ]" data-enable-options="[ ]">
-						<label for="post_title_no" class="red"><span class="icon icon16 fa-times"></span> {lang}wcf.acp.option.type.boolean.no{/lang}</label>
+						<label for="post_title_no" class="red">{icon name='times' size=16} {lang}wcf.acp.option.type.boolean.no{/lang}</label>
 					</li>
 				</ol>
 				<small>{lang}packages.page.filebaseCategoryAdd.packageServer.description{/lang}</small>

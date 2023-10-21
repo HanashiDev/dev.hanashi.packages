@@ -1,11 +1,5 @@
 {include file='header' pageTitle='packages.page.repositoryList.title'}
 
-<script data-relocate="true">
-	$(function() {
-		new WCF.Action.Delete('packages\\data\\repository\\RepositoryAction', $('.jsRow'));
-	});
-</script>
-
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
 		<h1 class="contentTitle">{lang}packages.page.repositoryList.title{/lang}</h1>
@@ -13,7 +7,7 @@
 	
 	<nav class="contentHeaderNavigation">
 		<ul>
-			<li><a href="{link application='packages' controller='RepositoryAdd'}{/link}" class="button"><span class="icon icon16 fa-plus"></span> <span>{lang}packages.page.repositoryList.repositoryAdd{/lang}</span></a></li>
+			<li><a href="{link application='packages' controller='RepositoryAdd'}{/link}" class="button">{icon name='plus' size=16} <span>{lang}packages.page.repositoryList.repositoryAdd{/lang}</span></a></li>
 			{event name='contentHeaderNavigation'}
 		</ul>
 	</nav>
@@ -29,7 +23,7 @@
 
 {if $objects|count}
 	<div class="section tabularBox">
-		<table class="table">
+		<table class="table jsObjectActionContainer" data-object-action-class-name="packages\data\repository\RepositoryAction">
 			<thead>
 				<tr>
 					<th></th>
@@ -42,9 +36,9 @@
 			</thead>
 			<tbody>
 				{foreach from=$objects item=object}
-					<tr class="jsRow">
+					<tr class="jsObjectActionObject" data-object-id="{$object->repositoryID}">
 						<td class="columnIcon">
-							<span class="icon icon16 fa-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$object->repositoryID}" data-confirm-message="{lang}packages.page.repositoryList.removeRepositoryQuestion{/lang}"></span>
+							{objectAction action="delete" objectTitle=$object->name}
 							{event name='rowButtons'}
 						</td>
 						<td class="columnID">{#$object->repositoryID}</td>
