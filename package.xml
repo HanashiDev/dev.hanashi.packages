@@ -5,7 +5,7 @@
 		<packagename>Package server</packagename>
 		<packagedescription>Ein kleiner Paketserver der auf die Filebase von WoltLab aufbaut.</packagedescription>
 		<isapplication>1</isapplication>
-		<version>1.0.0</version>
+		<version>1.1.0</version>
 		<date>2023-10-21</date>
 	</packageinformation>
 	<authorinformation>
